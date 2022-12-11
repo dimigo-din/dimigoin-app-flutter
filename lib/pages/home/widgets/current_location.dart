@@ -51,19 +51,19 @@ class CurrentLocationWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: homePageController.places.map(
-                (place) => 
+                (place) =>
                   GestureDetector(
                   child: SizedBox(
                     width: 45,
                     child: Column (
                       children: [
-                        place["icon"],
+                        Image.asset(place["isActive"] ? "assets/home/${place['icon']}_active.png" : "assets/home/${place['icon']}.png"), // place["icon"]
                         Text(
                           place["name"],
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
-                            color: place["color"],
+                            color: place["isActive"] ? const Color(0xFFE83C77) : const Color(0xFFD2D6DB),
                             fontWeight: FontWeight.w600
                           ),
                         )
@@ -73,6 +73,27 @@ class CurrentLocationWidget extends StatelessWidget {
                 )
               ).toList()
             ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    style: DefaultTextStyle.of(context).style,
+                    children: <TextSpan>[
+                      const TextSpan(text: "나의 현재 위치는 ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                      TextSpan(
+                        text: homePageController.currentLocation, 
+                        style: const TextStyle(color: Color(0xFFE83C77), fontWeight: FontWeight.bold, fontSize: 14)
+                      ),
+                      const TextSpan(text: " 입니다", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14))
+                    ]
+                  )
+                )
+              ],
+            )
           )
         ]
       ),

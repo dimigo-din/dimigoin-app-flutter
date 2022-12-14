@@ -37,7 +37,7 @@ class CurrentLocationWidget extends StatelessWidget {
                         fontSize: 22, fontWeight: FontWeight.bold
                       ),
                     ),
-                    Image.asset("assets/direction.png")
+                    Image.asset("assets/next.png")
                   ]
                 )
               )

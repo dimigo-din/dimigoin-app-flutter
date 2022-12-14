@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
+import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 
 class HomePageController extends GetxController {
   var currentLocation = "3학년 1반";
-  var selectedMealIndex = 0;
   List<Map> places = [
     {
       "name" : "교실",
@@ -31,6 +31,12 @@ class HomePageController extends GetxController {
     }
   ];
 
+  List dailyMeals = [].obs;
+  final meal = "".obs;
+
+  final DimigoinMeal _dimigoinMeal = DimigoinMeal();
+  var selectedMealIndex = 0.obs;
+
   changeCurrentLocation(String location) {
     for (var place in places) {
       if (place["name"] == location) {
@@ -45,7 +51,40 @@ class HomePageController extends GetxController {
     currentLocation = location;
   }
 
+  _mealToString(List<dynamic> meal) {
+    String result = "";
+    num count = 0;
+
+    for (int i = 0; i < meal.length; i++) {
+      count += meal[i].length + 3;
+
+      if (i != meal.length - 1) {
+        result += "${meal[i]} | ";
+
+        if (count >= 18 || meal[i].length > 15) {
+          result += "\n";
+          count = 0;
+        }
+      } else {
+        result += meal[i];
+      }
+    }
+
+    return result;
+  }
+
+  setMeal() async { // set daily meal
+    Map dailyMealInfo = await _dimigoinMeal.getDailyMeal(true);
+
+    dailyMeals.add(_mealToString(dailyMealInfo["breakfast"]));
+    dailyMeals.add(_mealToString(dailyMealInfo["lunch"]));
+    dailyMeals.add(_mealToString(dailyMealInfo["dinner"]));
+
+    meal.value = dailyMeals[selectedMealIndex.value];
+  }
+
   changeSelectedMeal(int mealIndex) {
-    selectedMealIndex = mealIndex;
+    selectedMealIndex.value = mealIndex;
+    meal.value = dailyMeals[selectedMealIndex.value];
   }
 }

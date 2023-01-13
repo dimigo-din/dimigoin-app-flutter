@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xffE83C77)
       ),
-      getPages: DimigoinPages.pages,
+      getPages: DimigoinPages.pages
     );
   }
 }

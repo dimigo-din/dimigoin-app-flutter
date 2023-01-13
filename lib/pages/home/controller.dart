@@ -52,6 +52,10 @@ class HomePageController extends GetxController {
   }
 
   _mealToString(List<dynamic> meal) {
+    if (meal.isEmpty) {
+      return "급식이 없습니다";
+    }
+
     String result = "";
     num count = 0;
 
@@ -76,6 +80,11 @@ class HomePageController extends GetxController {
   setMeal() async { // set daily meal
     Map dailyMealInfo = await _dimigoinMeal.getDailyMeal(true);
 
+    if (dailyMealInfo.isEmpty) {
+      dailyMeals = ["급식 정보를 불러올 수 없습니다", "급식 정보를 불러올 수 없습니다", "급식 정보를 불러올 수 없습니다"];
+      return;
+    }
+
     dailyMeals.add(_mealToString(dailyMealInfo["breakfast"]));
     dailyMeals.add(_mealToString(dailyMealInfo["lunch"]));
     dailyMeals.add(_mealToString(dailyMealInfo["dinner"]));
@@ -84,6 +93,8 @@ class HomePageController extends GetxController {
   }
 
   changeSelectedMeal(int mealIndex) {
+    setMeal();
+
     selectedMealIndex.value = mealIndex;
     meal.value = dailyMeals[selectedMealIndex.value];
   }

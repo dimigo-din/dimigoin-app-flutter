@@ -1,5 +1,4 @@
 import 'package:dimigoin/utils/bottom_navigation_bar.dart';
-import 'package:dimigoin/pages/home/page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

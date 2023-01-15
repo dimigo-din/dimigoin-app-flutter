@@ -1,4 +1,5 @@
 import 'package:dimigoin/routes/pages.dart';
+import 'package:dimigoin/utils/root.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xffE83C77)
       ),
+      home: Root(),
       getPages: DimigoinPages.pages
     );
   }

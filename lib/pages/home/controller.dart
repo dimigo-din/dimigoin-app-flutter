@@ -58,7 +58,6 @@ class HomePageController extends GetxController {
 
     String result = "";
     num count = 0;
-
     for (int i = 0; i < meal.length; i++) {
       count += meal[i].length + 3;
 

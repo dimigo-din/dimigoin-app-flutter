@@ -11,57 +11,54 @@ class HomePage extends GetView<HomePageController> {
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffF2F3F5),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            children: [
-              Container(
-                width: 350,
-                margin: const EdgeInsets.only(top: 80),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(
-                            left: 10
-                          ),
-                          child: Image.asset("assets/Logo.png"),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          children: [
+            Container(
+              width: 350,
+              margin: const EdgeInsets.only(top: 80),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                          left: 10
                         ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                        child: Image.asset("assets/Logo.png"),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Image.asset("assets/alarm.png"),
+                        ],
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 10
+                        ),
+                        child: Column(
                           children: [
-                            Image.asset("assets/alarm.png"),
-                          ],
+                            CurrentLocationWidget(),
+                            TodayMealWidget()
+                          ]
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(
-                            top: 10
-                          ),
-                          child: Column(
-                            children: [
-                              CurrentLocationWidget(),
-                              TodayMealWidget()
-                            ]
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                      )
+                    ],
+                  )
+                ],
               ),
-            ],
-          ),
-        ]
-      ),
+            ),
+          ],
+        ),
+      ]
     );
   }
 }

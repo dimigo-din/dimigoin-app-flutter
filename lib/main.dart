@@ -17,6 +17,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: const Color(0xffE83C77)
       ),
+      builder: (context, child) => Scaffold(
+        body: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: child,
+        ),
+      ),
       home: Root(),
       getPages: DimigoinPages.pages
     );

@@ -1,9 +1,14 @@
 import 'package:dimigoin/routes/pages.dart';
 import 'package:dimigoin/utils/root.dart';
+import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DimigoinFlutterPlugin().initializeApp();
+
   runApp(const MyApp());
 }
 

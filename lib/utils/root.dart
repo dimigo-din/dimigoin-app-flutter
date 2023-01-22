@@ -5,8 +5,11 @@ import 'package:get/get.dart';
 import 'controller.dart';
 
 class Root extends GetView<RootController> {
-  Root({super.key});
   final RootController _rootController = Get.put(RootController());
+
+  Root({super.key}) {
+    _rootController.auth();
+  }
 
   @override
   Widget build(BuildContext context) {

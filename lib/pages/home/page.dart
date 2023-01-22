@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 import 'controller.dart';
 
+import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
+
 class HomePage extends GetView<HomePageController> {
   HomePage({super.key});
   final HomePageController homePageController = Get.put(HomePageController());
@@ -24,11 +26,18 @@ class HomePage extends GetView<HomePageController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(
+                      Padding(
+                        padding: const EdgeInsets.only(
                           left: 10
                         ),
-                        child: Image.asset("assets/Logo.png"),
+                        child: GestureDetector(
+                          onTap: () {
+                            DimigoinAccount dimigoinAccount = DimigoinAccount();
+
+                            dimigoinAccount.logout();
+                          },
+                          child: Image.asset("assets/Logo.png"),
+                        )
                       ),
                     ],
                   ),

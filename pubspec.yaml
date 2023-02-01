@@ -38,8 +38,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
 
-  dimigoin_flutter_plugin: ^1.0.0
-  flutter_svg: ^1.1.6
+  dimigoin_flutter_plugin: ^1.0.2
+  dalgeurak_meal_application:
+    git:
+      url: https://github.com/dimigoin/dalgeurak-meal-application.git
+      ref: main
+
+  flutter_svg: ^0.23.0+1
 
 dev_dependencies:
   flutter_test:
@@ -64,7 +69,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/images/
     - assets/images/home/
     - assets/images/navigation/
     - assets/images/register/

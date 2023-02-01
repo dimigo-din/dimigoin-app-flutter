@@ -71,7 +71,7 @@ class RegisterButton extends GetWidget {
           children: [
             SvgPicture.asset("assets/images/register/${btnMode.getIconName}.svg", width: 60),
             const SizedBox(height: 8),
-            Text("${btnMode.getTitle}", style: DimigoinTextStyle.T4)
+            Text(btnMode.getTitle, style: DimigoinTextStyle.T4)
           ],
         ),
       ),

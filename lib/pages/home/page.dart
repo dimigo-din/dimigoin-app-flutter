@@ -36,7 +36,7 @@ class HomePage extends GetView<HomePageController> {
 
                             dimigoinAccount.logout();
                           },
-                          child: Image.asset("assets/Logo.png"),
+                          child: Image.asset("assets/images/Logo.png"),
                         )
                       ),
                     ],
@@ -46,7 +46,7 @@ class HomePage extends GetView<HomePageController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Image.asset("assets/alarm.png"),
+                          Image.asset("assets/images/alarm.png"),
                         ],
                       ),
                       Container(

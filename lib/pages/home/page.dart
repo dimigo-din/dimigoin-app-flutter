@@ -1,6 +1,7 @@
 import 'package:dimigoin/pages/home/widgets/current_location.dart';
 import 'package:dimigoin/pages/home/widgets/today_meal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'controller.dart';
@@ -36,7 +37,11 @@ class HomePage extends GetView<HomePageController> {
 
                             dimigoinAccount.logout();
                           },
-                          child: Image.asset("assets/images/Logo.png"),
+                          child: SvgPicture.asset(
+                            "assets/images/Logo.svg",
+                            width: 30,
+                            height: 30,
+                          ),
                         )
                       ),
                     ],
@@ -46,7 +51,11 @@ class HomePage extends GetView<HomePageController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Image.asset("assets/images/alarm.png"),
+                          SvgPicture.asset(
+                            "assets/images/alarm.svg",
+                            width: 30,
+                            height: 30,
+                          ),
                         ],
                       ),
                       Container(

@@ -6,27 +6,31 @@ import 'package:dimigoin/pages/studentID/page.dart';
 import 'package:dimigoin/pages/auth/page.dart';
 
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
-import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 class RootController extends GetxController {
-  var currentIndex = 2.obs;
-  var currentPage = pages[2].obs;
+  var currentIndex = 1.obs;
+  var showPages = false.obs;
+  var pages = [].obs;
 
-  // ignore: prefer_const_constructors
-  static List<Widget> pages = [HomePage(), MealPage(), SchedulePage(), RegisterPage(), StudentIDPage()];
+  initializePages () async {
+    // ignore: prefer_const_constructors
+    pages.value = [HomePage(), MealPage(), SchedulePage(), RegisterPage(), StudentIDPage()];
+    showPages.value = true;
+  }
 
   setCurrentIndex(int index) {
     currentIndex.value = index;
-    currentPage.value = pages[index];
   }
 
   auth() async {
     DimigoinAccount dimigoinAccount = DimigoinAccount();
 
-    if(!await dimigoinAccount.checkNowLogin()) {
-      Get.to(() => Auth());
+    if(!await dimigoinAccount.checkNowLogin() || !await dimigoinAccount.validateAccessToken()) {
+      Get.to(() => Auth(), arguments: {"initializePages": initializePages});
+    } else {
+      await initializePages();
     }
   }
 }

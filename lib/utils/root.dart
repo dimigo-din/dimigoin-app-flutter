@@ -15,7 +15,7 @@ class Root extends GetView<RootController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF2F3F5),
-      body: Obx(() => _rootController.currentPage.value),
+      body: Obx(() => _rootController.showPages.value ? _rootController.pages[_rootController.currentIndex.value] : const SizedBox()),
       bottomNavigationBar: Navigation(),
     );
   }

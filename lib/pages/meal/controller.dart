@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 
@@ -20,15 +21,28 @@ extension BreakfastExtension on Breakfast {
 class MealController extends GetxController {
   var currentMeal = 0.obs;
   var weeklyMeal = [].obs;
-  var dayIndex = 0.obs;
   var mealTime = [].obs;
   var myClass = 0.obs;
+
+  var dispalySchedule = false.obs;
+  var selectedSchedule = 0.obs;
+
+  var dataLoaded = false.obs;
 
   final DimigoinAccount _dimigoinAccount = DimigoinAccount();
   final DimigoinMeal _dimigoinMeal = DimigoinMeal();
   final DalgeurakService _dalgeurakService = DalgeurakService();
 
-  final _hangeulIndex = ["첫","둘", "셋", "넷", "다섯", "여섯"];
+  final _hangeulIndex = ["첫", "둘", "셋", "넷", "다섯", "여섯"];
+
+  toggleSchedulePannel(int? index) {
+    dispalySchedule.value = !dispalySchedule.value;
+
+    if (index != null) {
+      print("togglePannel");
+      selectedSchedule.value = index;
+    }
+  }
 
   _mealToString(List<dynamic> meal) {
     if (meal.isEmpty) {
@@ -36,17 +50,9 @@ class MealController extends GetxController {
     }
 
     String result = "";
-    num count = 0;
     for (int i = 0; i < meal.length; i++) {
-      count += meal[i].length + 3;
-
       if (i != meal.length - 1) {
         result += "${meal[i]} | ";
-
-        if (count >= 18 || meal[i].length > 15) {
-          result += "\n";
-          count = 0;
-        }
       } else {
         result += meal[i];
       }
@@ -138,5 +144,7 @@ class MealController extends GetxController {
     }
 
     await _getMealTime();
+
+    dataLoaded.value = true;
   }
 }

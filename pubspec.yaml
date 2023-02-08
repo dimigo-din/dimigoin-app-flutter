@@ -45,6 +45,7 @@ dependencies:
       ref: main
 
   flutter_svg: ^0.23.0+1
+  flutter_custom_tab_bar: ^1.2.1
 
 dev_dependencies:
   flutter_test:

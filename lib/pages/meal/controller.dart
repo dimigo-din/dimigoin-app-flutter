@@ -147,4 +147,9 @@ class MealController extends GetxController {
 
     dataLoaded.value = true;
   }
+
+  @override
+  void onInit() async {
+    await getWeeklyMeal();
+  }
 }

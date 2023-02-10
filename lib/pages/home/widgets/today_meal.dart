@@ -7,9 +7,7 @@ import '../controller.dart';
 class TodayMealWidget extends StatelessWidget {
   final HomePageController homePageController = Get.put(HomePageController());
   
-  TodayMealWidget({super.key}) {
-    homePageController.setMeal();
-  }
+  TodayMealWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -9,9 +9,7 @@ import './controller.dart';
 class MealPage extends GetView<MealController> {
   final MealController _mealController = Get.put(MealController());
 
-  MealPage({super.key}) {
-    _mealController.getWeeklyMeal();
-  }
+  MealPage({super.key});
 
   @override
   Widget build(BuildContext context) {

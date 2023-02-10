@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_custom_tab_bar/library.dart';
 import 'package:get/get.dart';
 
@@ -42,6 +43,7 @@ class MealTabView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _MealTabController controller = Get.put(_MealTabController());
+    controller.controller.setCurrentIndex(DateTime.now().weekday - 1);
 
     return Column(
       children: [

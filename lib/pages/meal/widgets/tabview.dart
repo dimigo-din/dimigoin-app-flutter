@@ -1,5 +1,5 @@
+import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_custom_tab_bar/library.dart';
 import 'package:get/get.dart';
 
@@ -8,22 +8,6 @@ import 'package:dimigoin/themes/text_theme.dart';
 
 import '../controller.dart';
 import '../widgets/meal_card.dart';
-
-enum MealType {
-  breakfast,
-  lunch,
-  dinner
-}
-
-extension MealTypeExtension on MealType {
-  String get string {
-    switch (this) {
-      case MealType.breakfast: return "아침";
-      case MealType.lunch: return "점심";
-      case MealType.dinner: return "저녁";
-    }
-  }
-}
 
 class _MealTabController extends GetxController with GetSingleTickerProviderStateMixin {
   CustomTabBarController controller = CustomTabBarController();
@@ -126,7 +110,7 @@ class MealTabView extends StatelessWidget {
             bottom: 8
           ),
           child: MealCard(
-            type: MealType.values[i].string,
+            type: MealType.values[i].convertKorStr,
             meal: mealController.weeklyMeal[index][i],
             time: mealController.mealTime[mealController.myClass.value][i],
             index: i,

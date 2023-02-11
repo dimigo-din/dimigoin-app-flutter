@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controller.dart';
@@ -37,7 +38,7 @@ class CurrentLocationWidget extends StatelessWidget {
                         fontSize: 22, fontWeight: FontWeight.bold
                       ),
                     ),
-                    Image.asset("assets/next.png")
+                    SvgPicture.asset("assets/images/home/next.svg")
                   ]
                 )
               )
@@ -57,7 +58,11 @@ class CurrentLocationWidget extends StatelessWidget {
                     width: 45,
                     child: Column (
                       children: [
-                        Image.asset(place["isActive"] ? "assets/home/${place['icon']}_active.png" : "assets/home/${place['icon']}.png"), // place["icon"]
+                        SvgPicture.asset(
+                          place["isActive"] ? "assets/images/home/${place['icon']}_active.svg" : "assets/images/home/${place['icon']}.svg",
+                          height: 24,
+                          width: 24,
+                        ),
                         Text(
                           place["name"],
                           textAlign: TextAlign.center,

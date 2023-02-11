@@ -8,6 +8,7 @@ abstract class DimigoinColor {
   static const C1 = Color(0xFF505966);
   static const C2 = Color(0xFFB1B8C1);
   static const C3 = Color(0xFFD2D6DB);
+  static const C4 = Color(0xFFF2F3F5);
   static const C5 = Color(0xFFF2F3F5);
   static const C6 = Color(0xFFFAFAFC);
   static const grayOne = Color(0xFFD1D1D1);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controller.dart';
@@ -6,9 +7,7 @@ import '../controller.dart';
 class TodayMealWidget extends StatelessWidget {
   final HomePageController homePageController = Get.put(HomePageController());
   
-  TodayMealWidget({super.key}) {
-    homePageController.setMeal();
-  }
+  TodayMealWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class TodayMealWidget extends StatelessWidget {
                         fontSize: 22, fontWeight: FontWeight.bold
                       ),
                     ),
-                    Image.asset("assets/next.png")
+                    SvgPicture.asset("assets/images/home/next.svg")
                   ]
                 )
               ),

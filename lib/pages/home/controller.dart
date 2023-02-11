@@ -97,4 +97,9 @@ class HomePageController extends GetxController {
     selectedMealIndex.value = mealIndex;
     meal.value = dailyMeals[selectedMealIndex.value];
   }
+
+  @override
+  void onInit() async {
+    await setMeal();
+  }
 }

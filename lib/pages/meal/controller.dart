@@ -1,22 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
-
-enum Breakfast {
-  firstGrade,
-  secondGrade,
-  thirdGrade
-}
-
-extension BreakfastExtension on Breakfast {
-  String get time {
-    switch (this) {
-      case Breakfast.firstGrade: return "오전 7:40";
-      case Breakfast.secondGrade: return "오전 7:30";
-      case Breakfast.thirdGrade: return "오전 7:10";
-    }
-  }
-}
 
 class MealController extends GetxController {
   var currentMeal = 0.obs;
@@ -82,26 +65,14 @@ class MealController extends GetxController {
     var user = _dimigoinAccount.currentUser.toJson();
     myClass.value = user["class"] - 1;
 
-    var breakfast = "";
-    switch (user["grade"]) {
-      case 1:
-        breakfast = Breakfast.firstGrade.time;
-        break;
-      case 2:
-        breakfast = Breakfast.secondGrade.time;
-        break;
-      case 3:
-        breakfast = Breakfast.thirdGrade.time;
-        break;
-    }
-
     for (int classNum = 0; classNum < 6; classNum++) {
       List<String> classMealTime = [];
 
+      var breakfast = mealSchedule["breakfast"][user["grade"] - 1][classNum];
       var lunch = mealSchedule["lunch"][user["grade"] - 1][classNum];
       var dinner = mealSchedule["dinner"][user["grade"] - 1][classNum];
 
-      classMealTime.add(breakfast);
+      classMealTime.add("오전 ${breakfast ~/ 100}:${breakfast % 100}");
       classMealTime.add("오후 ${(lunch - 1200) ~/ 100}:${lunch % 100}");
       classMealTime.add("오후 ${(dinner - 1200) ~/ 100}:${dinner % 100}");
 

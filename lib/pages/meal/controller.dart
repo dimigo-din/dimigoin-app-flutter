@@ -73,7 +73,7 @@ class MealController extends GetxController {
       var dinner = mealSchedule["dinner"][user["grade"] - 1][classNum];
 
       classMealTime.add("오전 ${breakfast ~/ 100}:${breakfast % 100}");
-      classMealTime.add("오후 ${(lunch - 1200) ~/ 100}:${lunch % 100}");
+      classMealTime.add("오후 ${(lunch - 1200) ~/ 100 == 0 ? "12" : (lunch - 1200) ~/ 100}:${lunch % 100}");
       classMealTime.add("오후 ${(dinner - 1200) ~/ 100}:${dinner % 100}");
 
       mealTime.add(classMealTime);

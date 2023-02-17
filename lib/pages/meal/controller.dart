@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 
@@ -65,6 +66,8 @@ class MealController extends GetxController {
     var user = _dimigoinAccount.currentUser.toJson();
     myClass.value = user["class"] - 1;
 
+    var minuteFormat = NumberFormat("00");
+
     for (int classNum = 0; classNum < 6; classNum++) {
       List<String> classMealTime = [];
 
@@ -72,9 +75,9 @@ class MealController extends GetxController {
       var lunch = mealSchedule["lunch"][user["grade"] - 1][classNum];
       var dinner = mealSchedule["dinner"][user["grade"] - 1][classNum];
 
-      classMealTime.add("오전 ${breakfast ~/ 100}:${breakfast % 100}");
-      classMealTime.add("오후 ${(lunch - 1200) ~/ 100 == 0 ? "12" : (lunch - 1200) ~/ 100}:${lunch % 100}");
-      classMealTime.add("오후 ${(dinner - 1200) ~/ 100}:${dinner % 100}");
+      classMealTime.add("오전 ${breakfast ~/ 100}:${minuteFormat.format(breakfast % 100)}");
+      classMealTime.add("오후 ${(lunch - 1200) ~/ 100 == 0 ? "12" : (lunch - 1200) ~/ 100}:${minuteFormat.format(lunch % 100)}");
+      classMealTime.add("오후 ${(dinner - 1200) ~/ 100}:${minuteFormat.format(dinner % 100)}");
 
       mealTime.add(classMealTime);
 

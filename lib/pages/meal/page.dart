@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:dimigoin/routes/route.dart';
 import 'package:dimigoin/themes/text_theme.dart';
-import 'package:dimigoin/pages/meal/widgets/tabview.dart';
+import 'package:dimigoin/pages/meal/widgets/meal_tabview.dart';
+import 'package:dimigoin/pages/meal/widgets/meal_schedule.dart';
 
 import './controller.dart';
 
@@ -10,6 +12,38 @@ class MealPage extends GetView<MealController> {
   final MealController _mealController = Get.put(MealController());
 
   MealPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: Get.nestedKey(0),
+      onGenerateRoute: (settings) {
+        if (settings.name == DimigoinRoutes.MEALSCHEDULE) {
+          return GetPageRoute(
+            routeName: DimigoinRoutes.MEALSCHEDULE,
+            page: () => MealSchedule(
+              controller: _mealController,
+            ),
+            transition: Transition.rightToLeft
+          );
+        } else {
+          return GetPageRoute(
+            routeName: DimigoinRoutes.MEAL,
+            page: () => _MealPage(
+              controller: _mealController,
+            )
+          );
+        }
+      },
+    );
+  }
+}
+
+class _MealPage extends StatelessWidget {
+  final MealController controller;
+  const _MealPage({
+    required this.controller
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +73,7 @@ class MealPage extends GetView<MealController> {
                               left: 2.5
                             ),
                             child: Text(
-                              "${DateTime.now().month}월 ${_mealController.getWeekOfMonth()}째 주",
+                              "${DateTime.now().month}월 ${controller.getWeekOfMonth()}째 주",
                               style: DimigoinTextStyle.T5.copyWith(
                                 color: const Color(0xFFB1B8C1),
                               )
@@ -63,9 +97,9 @@ class MealPage extends GetView<MealController> {
                   padding: const EdgeInsets.only(
                     top: 24
                   ),
-                  child: Obx(() => _mealController.dataLoaded.value ?
+                  child: Obx(() => controller.dataLoaded.value ?
                     MealTabView(
-                      mealController: _mealController,
+                      mealController: controller,
                     ) : const SizedBox(width: 360)
                   ),
                 )

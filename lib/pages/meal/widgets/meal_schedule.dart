@@ -86,7 +86,7 @@ class MealSchedule extends StatelessWidget {
                   ScheduleTabView(
                     schedule: controller.mealOrder,
                     myClass: controller.myClass.value,
-                    selectedSchedule: controller.selectedSchedule
+                    selectedSchedule: controller.selectedSchedule.value
                   )
                 ],
               ),

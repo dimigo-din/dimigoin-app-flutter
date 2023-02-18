@@ -19,17 +19,12 @@ class _ScheduleTabController extends GetxController with GetSingleTickerProvider
     pageController = PageController(initialPage: initialPage);
     controller.setCurrentIndex(initialPage);
   }
-
-  @override
-  void onInit() {
-    controller.setCurrentIndex(initialPage);
-  }
 }
 
 class ScheduleTabView extends StatelessWidget {
   final List schedule;
   final int myClass;
-  final RxInt selectedSchedule;
+  final int selectedSchedule;
 
   const ScheduleTabView({
     super.key,
@@ -40,8 +35,7 @@ class ScheduleTabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _ScheduleTabController controller = Get.put(_ScheduleTabController(initialPage: selectedSchedule.value));
-    controller.controller.setCurrentIndex(selectedSchedule.value);
+    final _ScheduleTabController controller = Get.put(_ScheduleTabController(initialPage: selectedSchedule));
 
     return Center(
       child: Column(

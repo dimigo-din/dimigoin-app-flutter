@@ -83,10 +83,12 @@ class MealSchedule extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  ScheduleTabView(
-                    schedule: controller.mealOrder,
-                    myClass: controller.myClass.value,
-                    selectedSchedule: controller.selectedSchedule.value
+                  Expanded(
+                    child: ScheduleTabView(
+                      schedule: controller.mealOrder,
+                      myClass: controller.myClass.value,
+                      selectedSchedule: controller.selectedSchedule.value
+                    ),
                   )
                 ],
               ),

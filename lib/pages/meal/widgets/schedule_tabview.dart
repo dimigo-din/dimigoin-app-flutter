@@ -87,16 +87,12 @@ class ScheduleTabView extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: 360,
-            height: Get.height * 0.65,
-            margin: const EdgeInsets.only(
-              top: 10
-            ),
+          const SizedBox(height: 10),
+          Expanded(
             child: PageView.builder(
-              controller: controller.pageController,
-              itemCount: 3,
-              itemBuilder: generateSchedule
+                controller: controller.pageController,
+                itemCount: 3,
+                itemBuilder: generateSchedule
             ),
           )
         ],

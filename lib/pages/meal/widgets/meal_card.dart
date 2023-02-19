@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:dimigoin/themes/color_theme.dart';
 import 'package:dimigoin/themes/text_theme.dart';
+import 'package:dimigoin/routes/route.dart';
+
+import 'package:get/get.dart';
 
 class MealCard extends StatelessWidget {
   final String type;
@@ -9,7 +12,7 @@ class MealCard extends StatelessWidget {
   final String time;
   final int index;
   final bool now;
-  final Function toggleSchedulePannel;
+  final Function setSelectedSchedule;
 
   const MealCard({
     super.key,
@@ -18,7 +21,7 @@ class MealCard extends StatelessWidget {
     required this.time,
     required this.index,
     required this.now,
-    required this.toggleSchedulePannel
+    required this.setSelectedSchedule
   });
 
   @override
@@ -57,7 +60,10 @@ class MealCard extends StatelessWidget {
                         )
                       ),
                       GestureDetector(
-                        onTap: () => toggleSchedulePannel(index),
+                        onTap: () {
+                          setSelectedSchedule(index);
+                          Get.toNamed(DimigoinRoutes.MEALSCHEDULE, id: 0);
+                        },
                         child: Text(
                           "$time  >",
                           style: DimigoinTextStyle.T6.copyWith(
@@ -75,13 +81,6 @@ class MealCard extends StatelessWidget {
                       padding: const EdgeInsets.only(
                         bottom: 15
                       ),
-                      // child: Text(
-                      //   meal,
-                      //   style: DimigoinTextStyle.T5.copyWith(
-                      //     color: now ? Colors.white : DimigoinColor.C2,
-                      //     fontWeight: FontWeight.w500
-                      //   ),
-                      // ),
                       child: SizedBox(
                         width: 300,
                         child: Row(

@@ -1,13 +1,16 @@
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
+import 'package:dimigoin/routes/route.dart';
 
 class MealController extends GetxController {
   var currentMeal = 0.obs;
   var weeklyMeal = [].obs;
   var mealTime = [].obs;
+  var mealOrder = [[], [], []].obs;
   var myClass = 0.obs;
+  var myGrade = 0.obs;
 
-  var dispalySchedule = false.obs;
   var selectedSchedule = 0.obs;
 
   var dataLoaded = false.obs;
@@ -18,13 +21,8 @@ class MealController extends GetxController {
 
   final _hangeulIndex = ["첫", "둘", "셋", "넷", "다섯", "여섯"];
 
-  toggleSchedulePannel(int? index) {
-    dispalySchedule.value = !dispalySchedule.value;
-
-    if (index != null) {
-      print("togglePannel");
-      selectedSchedule.value = index;
-    }
+  setSelectedSchedule(int index) {
+    selectedSchedule.value = index;
   }
 
   _mealToString(List<dynamic> meal) {
@@ -65,6 +63,8 @@ class MealController extends GetxController {
     var user = _dimigoinAccount.currentUser.toJson();
     myClass.value = user["class"] - 1;
 
+    var minuteFormat = NumberFormat("00");
+
     for (int classNum = 0; classNum < 6; classNum++) {
       List<String> classMealTime = [];
 
@@ -72,14 +72,34 @@ class MealController extends GetxController {
       var lunch = mealSchedule["lunch"][user["grade"] - 1][classNum];
       var dinner = mealSchedule["dinner"][user["grade"] - 1][classNum];
 
-      classMealTime.add("오전 ${breakfast ~/ 100}:${breakfast % 100}");
-      classMealTime.add("오후 ${(lunch - 1200) ~/ 100 == 0 ? "12" : (lunch - 1200) ~/ 100}:${lunch % 100}");
-      classMealTime.add("오후 ${(dinner - 1200) ~/ 100}:${dinner % 100}");
+      classMealTime.add("오전 ${breakfast ~/ 100}:${minuteFormat.format(breakfast % 100)}");
+      classMealTime.add("오후 ${(lunch - 1200) ~/ 100 == 0 ? "12" : (lunch - 1200) ~/ 100}:${minuteFormat.format(lunch % 100)}");
+      classMealTime.add("오후 ${(dinner - 1200) ~/ 100}:${minuteFormat.format(dinner % 100)}");
 
       mealTime.add(classMealTime);
 
       if (classNum == myClass.value) {
         _setCurrentMeal(lunch, dinner);
+      }
+
+      var dailyMeal = [breakfast, lunch, dinner];
+
+      for (int i = 0; i < 3; i++) {
+        List<dynamic> mealOrderIndex = mealOrder[i];
+        if (classNum == 0 || i == 0) {
+          mealOrderIndex.add({"class": "${user['grade']}학년 ${classNum + 1}반", "time": classMealTime[i], "raw": dailyMeal[i]});
+          continue;
+        }
+
+        var searchRange = mealOrderIndex.length;
+        for (int j = 0; j < searchRange; j++) {
+          if (dailyMeal[i] <= mealOrderIndex[j]["raw"]) {
+            mealOrderIndex.insert(i, {"class": "${user['grade']}학년 ${classNum + 1}반", "time": classMealTime[i], "raw": dailyMeal[i]});
+          }
+          else if (j == mealOrderIndex.length - 1) {
+            mealOrderIndex.add({"class": "${user['grade']}학년 ${classNum + 1}반", "time": classMealTime[i], "raw": dailyMeal[i]});
+          }
+        }
       }
     }
   }

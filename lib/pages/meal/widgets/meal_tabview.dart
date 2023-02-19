@@ -85,7 +85,7 @@ class MealTabView extends StatelessWidget {
                 width: 360,
                 height: Get.height * 0.65,
                 margin: const EdgeInsets.only(
-                  top: 10
+                  top: 10 
                 ),
                 child: PageView.builder(
                   controller: controller.pageController,
@@ -115,7 +115,7 @@ class MealTabView extends StatelessWidget {
             time: mealController.mealTime[mealController.myClass.value][i],
             index: i,
             now: mealController.currentMeal.value == i,
-            toggleSchedulePannel: mealController.toggleSchedulePannel
+            setSelectedSchedule: mealController.setSelectedSchedule
           ),
         )
       );

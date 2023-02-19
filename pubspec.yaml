@@ -46,6 +46,7 @@ dependencies:
 
   flutter_svg: ^0.23.0+1
   flutter_custom_tab_bar: ^1.2.1
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,7 @@ flutter:
     - assets/images/home/
     - assets/images/navigation/
     - assets/images/register/
+    - assets/images/meal/
 
 fonts:
   - family: AppleSDGothicNeo

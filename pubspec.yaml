@@ -76,6 +76,7 @@ flutter:
     - assets/images/navigation/
     - assets/images/register/
     - assets/images/meal/
+    - assets/images/schedule/
 
 fonts:
   - family: AppleSDGothicNeo

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_custom_tab_bar/indicator/custom_indicator.dart';
 import 'package:get/get.dart';
 
@@ -7,8 +7,9 @@ import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 class SchedulePageController extends GetxController with GetSingleTickerProviderStateMixin {
   var myGrade = 0.obs;
   var myClass = 0.obs;
+  var titleIndex = 1.obs;
   var term = 1.obs;
-  var monthIndex = 0.obs;
+  var monthIndex = DateTime.now().month.obs;
   var weekDay = ["월", "화", "수", "목", "금"];
   var timetable = [ // 더미데이터
     ["국어", "국어", "국어", "국어", "국어", "국어", "국어"], 
@@ -16,16 +17,47 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
     ["국어", "국어", "국어", "국어", "국어", "국어", ""],
     ["국어", "국어", "국어", "국어", "국어", "국어", "국어"],
     ["국어", "국어", "국어", "국어", "국어", "국어", "국어"],
-  ];
+  ].obs;
   var currentSubject = 0.obs;
 
   final DimigoinAccount _dimigoinAccount = DimigoinAccount();
 
   CustomTabBarController tabController = CustomTabBarController();
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController(initialPage: 1);
+  late PageController calendarController;
 
-  increaseMonth(index) {
-    monthIndex += index;
+  increaseMonth() {
+    if (monthIndex.value == 12) {
+      return null;
+    }
+
+    monthIndex.value = (monthIndex.value + 1) % 12;
+    if (monthIndex.value == 0) {
+      monthIndex.value = 12;
+    }
+
+    calendarController.nextPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeOut
+    );
+  }
+
+  decreaseMonth() {
+    if (monthIndex.value == 1) {
+      return null;
+    }
+
+    monthIndex.value = (monthIndex.value - 1) % 12;
+    calendarController.previousPage(
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeOut
+    );
+  }
+
+  _changeTitleIndex() {
+    if (titleIndex.value != tabController.currentIndex) {
+      titleIndex.value = tabController.currentIndex;
+    }
   }
 
   _getGradeClass() async {
@@ -62,11 +94,18 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
     }
   }
 
+  _loadTimeTable() async {
+    // load time table data from server
+  }
+
   @override
   void onInit() async {
     await _getGradeClass();
+    await _loadTimeTable();
     _loadSchoolTerm();
     _getCurrentSubject();
+
+    pageController.addListener(_changeTitleIndex);
 
     super.onInit();
   }

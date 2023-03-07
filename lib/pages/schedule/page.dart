@@ -1,9 +1,12 @@
+import 'package:dimigoin/pages/schedule/widgets/calandar.dart';
 import 'package:dimigoin/pages/schedule/widgets/timetable.dart';
 import 'package:dimigoin/pages/schedule/widgets/titles.dart';
 import 'package:dimigoin/themes/color_theme.dart';
 import 'package:dimigoin/themes/text_theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_tab_bar/library.dart';
+
 import 'package:get/get.dart';
 
 import 'controller.dart';
@@ -50,9 +53,11 @@ class SchedulePage extends GetView<SchedulePageController> {
                           const SizedBox(
                             height: 5
                           ),
-                          Titles(
-                            controller: _controller
-                          ).widgets[_controller.tabController.currentIndex],
+                          Obx(() => 
+                            Titles(
+                              controller: _controller
+                            ).widgets[_controller.titleIndex.value],
+                          )
                         ],
                       ),
                     ),
@@ -124,7 +129,7 @@ class SchedulePage extends GetView<SchedulePageController> {
                     if (index == 0) {
                       return TimeTable(controller: _controller);
                     } else {
-                      return const SizedBox();
+                      return Calender(controller: _controller);
                     }
                   },
                 ),

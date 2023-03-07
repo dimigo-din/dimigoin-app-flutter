@@ -48,6 +48,7 @@ dependencies:
   flutter_custom_tab_bar: ^1.2.1
   intl: ^0.17.0
   syncfusion_flutter_datepicker: "20.4.44"
+  table_calendar: ^3.0.8
 
 dev_dependencies:
   flutter_test:

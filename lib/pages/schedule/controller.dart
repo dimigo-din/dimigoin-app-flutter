@@ -23,7 +23,7 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
   final DimigoinAccount _dimigoinAccount = DimigoinAccount();
 
   CustomTabBarController tabController = CustomTabBarController();
-  PageController pageController = PageController(initialPage: 1);
+  PageController pageController = PageController(initialPage: 0);
   late PageController calendarController;
 
   increaseMonth() {

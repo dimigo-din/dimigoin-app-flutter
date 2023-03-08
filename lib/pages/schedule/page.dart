@@ -9,10 +9,10 @@ import 'package:flutter_custom_tab_bar/library.dart';
 
 import 'package:get/get.dart';
 
-import 'controller.dart';
+import './controller.dart';
 
 class SchedulePage extends GetView<SchedulePageController> {
-  final SchedulePageController _controller = Get.put(SchedulePageController());
+  final SchedulePageController _scheduleController = Get.put(SchedulePageController());
 
   SchedulePage({super.key});
 
@@ -44,7 +44,7 @@ class SchedulePage extends GetView<SchedulePageController> {
                               left: 2.5
                             ),
                             child: Obx(() => Text(
-                              "${DateTime.now().year}학년도 ${_controller.term.value}학기 ${_controller.myGrade.value}학년 ${_controller.myClass.value}반",
+                              "${DateTime.now().year}학년도 ${_scheduleController.term.value}학기 ${_scheduleController.myGrade.value}학년 ${_scheduleController.myClass.value}반",
                               style: DimigoinTextStyle.T5.copyWith(
                                 color: DimigoinColor.C2
                               )),
@@ -55,8 +55,8 @@ class SchedulePage extends GetView<SchedulePageController> {
                           ),
                           Obx(() => 
                             Titles(
-                              controller: _controller
-                            ).widgets[_controller.titleIndex.value],
+                              controller: _scheduleController
+                            ).widgets[_scheduleController.titleIndex.value],
                           )
                         ],
                       ),
@@ -80,8 +80,8 @@ class SchedulePage extends GetView<SchedulePageController> {
                         padding: const EdgeInsets.fromLTRB(5, 1, 5, 1),
                         child: CustomTabBar(
                           itemCount: 2,
-                          tabBarController: controller.tabController,
-                          pageController: controller.pageController,
+                          tabBarController: _scheduleController.tabController,
+                          pageController: _scheduleController.pageController,
                           height: 50,
                           width: 350,
                           indicator: RoundIndicator(
@@ -123,13 +123,13 @@ class SchedulePage extends GetView<SchedulePageController> {
                 width: Get.width,
                 height: Get.height * 0.55,
                 child: PageView.builder(
-                  controller: _controller.pageController,
+                  controller: _scheduleController.pageController,
                   itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0) {
-                      return TimeTable(controller: _controller);
+                      return TimeTable(controller: _scheduleController);
                     } else {
-                      return Calender(controller: _controller);
+                      return Calender(controller: _scheduleController);
                     }
                   },
                 ),

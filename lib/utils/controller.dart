@@ -10,7 +10,7 @@ import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 import 'package:get/get.dart';
 
 class RootController extends GetxController {
-  var currentIndex = 1.obs;
+  var currentIndex = 2.obs;
   var showPages = false.obs;
   var pages = [].obs;
 

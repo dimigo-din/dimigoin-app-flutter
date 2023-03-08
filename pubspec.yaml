@@ -47,6 +47,8 @@ dependencies:
   flutter_svg: ^0.23.0+1
   flutter_custom_tab_bar: ^1.2.1
   intl: ^0.17.0
+  syncfusion_flutter_datepicker: "20.4.44"
+  table_calendar: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +78,7 @@ flutter:
     - assets/images/navigation/
     - assets/images/register/
     - assets/images/meal/
+    - assets/images/schedule/
 
 fonts:
   - family: AppleSDGothicNeo

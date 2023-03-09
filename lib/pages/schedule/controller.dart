@@ -7,7 +7,7 @@ import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 class SchedulePageController extends GetxController with GetSingleTickerProviderStateMixin {
   var myGrade = 0.obs;
   var myClass = 0.obs;
-  var titleIndex = 1.obs;
+  var titleIndex = 0.obs;
   var term = 1.obs;
   var monthIndex = DateTime.now().month.obs;
   var weekDay = ["월", "화", "수", "목", "금"];

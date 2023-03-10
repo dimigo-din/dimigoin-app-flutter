@@ -76,10 +76,8 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
     );
   }
 
-  _changeTitleIndex() {
-    if (titleIndex.value != tabController.currentIndex) {
-      titleIndex.value = tabController.currentIndex;
-    }
+  changeTitleIndex(int index) {
+    titleIndex.value = index;
   }
 
   _getGradeClass() async {
@@ -155,7 +153,7 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
 
     dataLoaded.value = true;
 
-    pageController.addListener(_changeTitleIndex);
+    // pageController.addListener(_changeTitleIndex);
 
     super.onInit();
   }

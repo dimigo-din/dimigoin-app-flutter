@@ -124,6 +124,7 @@ class SchedulePage extends GetView<SchedulePageController> {
                 height: Get.height * 0.55,
                 child: Obx(() => PageView.builder(
                   controller: _scheduleController.pageController,
+                  onPageChanged: _scheduleController.changeTitleIndex,
                   itemCount: 2,
                   itemBuilder: _scheduleController.dataLoaded.value ? (BuildContext context, int index) {
                     if (index == 0) {

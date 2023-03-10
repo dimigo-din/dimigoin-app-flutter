@@ -25,14 +25,7 @@ class TimeTable extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: controller.weekDay.map((element) =>
-                  Text(
-                    element,
-                    style: DimigoinTextStyle.T3.copyWith(
-                      color: controller.tabController.currentIndex == 0 ? DimigoinColor.C1 : DimigoinColor.C2
-                    ),
-                  )
-                ).toList(),
+              children: _generateWeekday(),
             ),
             const SizedBox(
               height: 15,
@@ -52,6 +45,24 @@ class TimeTable extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _generateWeekday() {
+    List<Widget> weekDays = [];
+    int today = DateTime.now().day;
+
+    for (int day = 0; day < 5; day++) {
+      weekDays.add(
+        Text(
+          controller.weekDay[day],
+          style: DimigoinTextStyle.T3.copyWith(
+            color: today == day ? DimigoinColor.C1 : DimigoinColor.C2
+          ),
+        )
+      );
+    }
+
+    return weekDays;
   }
 
   Widget _generateDailySchedule(List<String> schedule, Color color, bool today) {

@@ -7,4 +7,5 @@ abstract class DimigoinRoutes {
   static const SCHEDULE = '/schedule';
   static const REGISTER = '/register';
   static const STUDENTID = '/studentid';
+  static const IDCARD = '/studentid/idcard';
 }

@@ -79,6 +79,7 @@ flutter:
     - assets/images/register/
     - assets/images/meal/
     - assets/images/schedule/
+    - assets/images/studentID/
 
 fonts:
   - family: AppleSDGothicNeo

@@ -122,17 +122,18 @@ class SchedulePage extends GetView<SchedulePageController> {
               SizedBox(
                 width: Get.width,
                 height: Get.height * 0.55,
-                child: PageView.builder(
+                child: Obx(() => PageView.builder(
                   controller: _scheduleController.pageController,
+                  onPageChanged: _scheduleController.changeTitleIndex,
                   itemCount: 2,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: _scheduleController.dataLoaded.value ? (BuildContext context, int index) {
                     if (index == 0) {
                       return TimeTable(controller: _scheduleController);
                     } else {
                       return Calender(controller: _scheduleController);
                     }
-                  },
-                ),
+                  } : (BuildContext context, int index) => const SizedBox(),
+                )),
               )
             ],
           )

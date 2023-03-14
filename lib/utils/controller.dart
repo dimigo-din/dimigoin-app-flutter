@@ -3,7 +3,6 @@ import 'package:dimigoin/pages/meal/page.dart';
 import 'package:dimigoin/pages/register/page.dart';
 import 'package:dimigoin/pages/schedule/page.dart';
 import 'package:dimigoin/pages/studentID/page.dart';
-import 'package:dimigoin/pages/auth/page.dart';
 
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 
@@ -28,7 +27,8 @@ class RootController extends GetxController {
     DimigoinAccount dimigoinAccount = DimigoinAccount();
 
     if(!await dimigoinAccount.checkNowLogin() || !await dimigoinAccount.validateAccessToken()) {
-      Get.to(() => Auth(), arguments: {"initializePages": initializePages});
+      // Get.to(() => Auth(), arguments: {"initializePages": initializePages});
+      Get.toNamed("auth", arguments: {"initializePages": initializePages});
     } else {
       await initializePages();
     }

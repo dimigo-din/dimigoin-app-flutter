@@ -65,7 +65,7 @@ class TimeTable extends StatelessWidget {
     return weekDays;
   }
 
-  Widget _generateDailySchedule(List<String> schedule, Color color, bool today) {
+  Widget _generateDailySchedule(List<String> schedule, Color color, bool today, bool isDataEmpty) {
     List<Widget> subjects = [];
 
     for (int i = 0; i < schedule.length; i++) {
@@ -73,7 +73,7 @@ class TimeTable extends StatelessWidget {
         width: 65,
         height: 35,
         decoration: BoxDecoration(
-          color: controller.currentSubject.value == i && today ? DimigoinColor.DIMI_MAGENTA : Colors.white,
+          color: controller.currentSubject.value == i && today && !isDataEmpty ? DimigoinColor.DIMI_MAGENTA : Colors.white,
           borderRadius: BorderRadius.circular(10)
         ),
         child: Center(
@@ -108,7 +108,7 @@ class TimeTable extends StatelessWidget {
     for (int i = 0; i < controller.timetable.length; i++) {
       Color color = i == DateTime.now().weekday ? DimigoinColor.C1 : DimigoinColor.C2;
 
-      timetable.add(_generateDailySchedule(controller.timetable[i], color, i == DateTime.now().weekday));
+      timetable.add(_generateDailySchedule(controller.timetable[i], color, i == DateTime.now().weekday, controller.isDataEmpty.value));
     }
 
     return timetable;

@@ -39,7 +39,9 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
   var weekDay = ["월", "화", "수", "목", "금"];
   var timetable = [].obs;
   var currentSubject = 0.obs;
+
   var dataLoaded = false.obs;
+  var isDataEmpty = true.obs;
 
   final DimigoinAccount _dimigoinAccount = DimigoinAccount();
   final DimigoinTimetable _dimigoinTimetable = DimigoinTimetable();
@@ -118,6 +120,15 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
     List<List<String>> timetableRaw = await _dimigoinTimetable.getWeeklyTimeTable(myGrade.value, myClass.value);
     List<List<String>> timetableData = [];
 
+    if (timetableRaw.isEmpty) {
+      for (int day = 0; day < 5; day++) {
+        timetableData.add(["", "", "", "", "", "", ""]);
+      }
+
+      timetable.value = timetableData;
+      return;
+    }
+
     for (int day = 0; day < 5; day++) {
       List<String> dailyTimetable = [];
       for (int subject = 0; subject < timetableRaw[day].length; subject++) {
@@ -142,6 +153,7 @@ class SchedulePageController extends GetxController with GetSingleTickerProvider
     }
 
     timetable.value = timetableData;
+    isDataEmpty.value = false;
   }
 
   @override

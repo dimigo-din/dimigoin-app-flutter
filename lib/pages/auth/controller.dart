@@ -34,7 +34,7 @@ class AuthController extends GetxController {
       isLoginFailed.value = true;
     } else if (loginData["success"]) {
       await Get.arguments["initializePages"]();
-      Get.back();
+      Get.offAllNamed("/");
     }
   }
 }

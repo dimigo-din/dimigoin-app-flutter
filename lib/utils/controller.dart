@@ -15,7 +15,9 @@ class RootController extends GetxController {
 
   initializePages () async {
     // ignore: prefer_const_constructors
-    pages.value = [HomePage(), MealPage(), SchedulePage(), RegisterPage(), StudentIDPage()];
+    pages.value = [HomePage(), MealPage(), SchedulePage(), RegisterPage(), StudentIDPage(initializePages: initializePages)];
+
+    currentIndex.value = 0;
     showPages.value = true;
   }
 

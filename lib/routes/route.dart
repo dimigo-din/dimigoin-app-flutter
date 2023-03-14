@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 abstract class DimigoinRoutes {
+  static const ROOT = '/';
   static const AUTH = '/auth';
   static const HOME = '/home';
   static const MEAL = '/meal';

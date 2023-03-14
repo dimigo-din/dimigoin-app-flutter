@@ -9,7 +9,12 @@ import 'controller.dart';
 
 class StudentIDPage extends GetView<StudentIDController> {
   final StudentIDController _studentIDController = Get.put(StudentIDController());
-  StudentIDPage({super.key});
+  final void Function() initializePages;
+
+  StudentIDPage({
+    super.key,
+    required this.initializePages
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +32,7 @@ class StudentIDPage extends GetView<StudentIDController> {
             routeName: DimigoinRoutes.STUDENTID,
             page: () => _StudentIDPage(
               controller: _studentIDController,
+              initializePages: initializePages,
             )
           );
         }
@@ -37,8 +43,11 @@ class StudentIDPage extends GetView<StudentIDController> {
 
 class _StudentIDPage extends StatelessWidget {
   final StudentIDController controller;
+  final void Function() initializePages;
+
   const _StudentIDPage({
-    required this.controller
+    required this.controller,
+    required this.initializePages
   });
 
   @override
@@ -67,7 +76,9 @@ class _StudentIDPage extends StatelessWidget {
                         )
                       ),
                       IconButton(
-                        onPressed: controller.logout,
+                        onPressed: () {
+                          controller.logout(initializePages);
+                        },
                         icon: SvgPicture.asset("assets/images/studentID/logout.svg")
                       )
                     ],

@@ -1,6 +1,5 @@
 import 'package:dalgeurak_meal_application/routes/pages.dart';
 import 'package:dimigoin/routes/pages.dart';
-import 'package:dimigoin/utils/root.dart';
 import 'package:dalgeurak_widget_package/dalgeurak_widget_package.dart';
 import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
           child: child,
         ),
       ),
-      home: Root(),
+      initialRoute: "/",
       getPages: [...DimigoinPages.pages, ...DalgeurakMealApplicationPages.pages]
     );
   }

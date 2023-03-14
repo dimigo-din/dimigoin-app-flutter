@@ -64,7 +64,7 @@ class MealTabView extends StatelessWidget {
                           builder: (BuildContext context, color) {
                             return Container(
                               alignment: Alignment.center,
-                              constraints: BoxConstraints(minWidth: (Get.width / 7.8)),
+                              constraints: const BoxConstraints(minWidth: 50), // 350 / 7
                               child: Text(
                                 controller.weekDay[index],
                                 style: DimigoinTextStyle.T4.copyWith(

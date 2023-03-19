@@ -17,7 +17,12 @@ class RootController extends GetxController {
     // ignore: prefer_const_constructors
     pages.value = [HomePage(), MealPage(), SchedulePage(), RegisterPage(), StudentIDPage(initializePages: initializePages)];
 
-    currentIndex.value = 0;
+    if (Get.arguments != null) {
+      currentIndex.value = Get.arguments["page"];
+    } else {
+      currentIndex.value = 0;
+    }
+
     showPages.value = true;
   }
 
@@ -29,7 +34,6 @@ class RootController extends GetxController {
     DimigoinAccount dimigoinAccount = DimigoinAccount();
 
     if(!await dimigoinAccount.checkNowLogin() || !await dimigoinAccount.validateAccessToken()) {
-      // Get.to(() => Auth(), arguments: {"initializePages": initializePages});
       Get.toNamed("auth", arguments: {"initializePages": initializePages});
     } else {
       await initializePages();

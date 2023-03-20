@@ -10,4 +10,6 @@ abstract class DimigoinRoutes {
   static const REGISTER = '/register';
   static const STUDENTID = '/studentid';
   static const IDCARD = '/studentid/idcard';
+  static const PUNISHMENTS = '/studentid/punishments';
+  static const LECTURES = '/studentid/lectures';
 }

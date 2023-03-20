@@ -39,15 +39,21 @@ class Navigation extends GetView<RootController> {
       ),  
     ];
 
-    return Obx(() => BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      items: navigationItems,
-      currentIndex: _rootController.currentIndex.value,
-      onTap: _rootController.setCurrentIndex,
-      selectedItemColor: DimigoinColor.DIMI_MAGENTA,
-      unselectedItemColor: DimigoinColor.C3,
-      selectedFontSize: 12,
-      unselectedFontSize: 12,
-    ));
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20)
+      ),
+      child: Obx(() => BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: navigationItems,
+        currentIndex: _rootController.currentIndex.value,
+        onTap: _rootController.setCurrentIndex,
+        selectedItemColor: DimigoinColor.DIMI_MAGENTA,
+        unselectedItemColor: DimigoinColor.C3,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+      )),
+    );
   }
 }

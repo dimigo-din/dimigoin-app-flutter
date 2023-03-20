@@ -21,11 +21,16 @@ class StudentIDPage extends GetView<StudentIDController> {
     return Navigator(
       key: Get.nestedKey(1),
       onGenerateRoute: (settings) {
-        if (settings.name == DimigoinRoutes.IDCARD) {
+        if (settings.name == DimigoinRoutes.PUNISHMENTS) { // 지도 일지
           return GetPageRoute(
-            routeName: DimigoinRoutes.IDCARD,
+            routeName: DimigoinRoutes.PUNISHMENTS,
             page: () => const SizedBox(),
             transition: Transition.downToUp
+          );
+        } else if (settings.name == DimigoinRoutes.LECTURES) { // 내 수강 내역
+          return GetPageRoute(
+            routeName: DimigoinRoutes.LECTURES,
+            page: () => const SizedBox()
           );
         } else {
           return GetPageRoute(

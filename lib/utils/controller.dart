@@ -9,17 +9,25 @@ import 'package:dimigoin_flutter_plugin/dimigoin_flutter_plugin.dart';
 import 'package:get/get.dart';
 
 class RootController extends GetxController {
-  var currentIndex = 4.obs;
+  var currentIndex = 0.obs;
   var showPages = false.obs;
   var pages = [].obs;
 
   initializePages () async {
-    // ignore: prefer_const_constructors
-    pages.value = [HomePage(), MealPage(), SchedulePage(), RegisterPage(), StudentIDPage(initializePages: initializePages)];
+    pages.value = [
+      HomePage(), 
+      MealPage(), 
+      SchedulePage(),
+      // ignore: prefer_const_constructors
+      RegisterPage(), 
+      StudentIDPage(
+        initializePages: initializePages
+      )
+    ];
 
-    if (Get.arguments != null) {
+    try {
       currentIndex.value = Get.arguments["page"];
-    } else {
+    } on NoSuchMethodError { 
       currentIndex.value = 0;
     }
 

@@ -43,11 +43,12 @@ class SchedulePage extends GetView<SchedulePageController> {
                             padding: const EdgeInsets.only(
                               left: 2.5
                             ),
-                            child: Obx(() => Text(
-                              "${DateTime.now().year}학년도 ${_scheduleController.term.value}학기 ${_scheduleController.myGrade.value}학년 ${_scheduleController.myClass.value}반",
+                            child: Text(
+                              "${DateTime.now().year}학년도",
                               style: DimigoinTextStyle.T5.copyWith(
-                                color: DimigoinColor.C2
-                              )),
+                                color: DimigoinColor.C2,
+                                fontWeight: FontWeight.w500
+                              ),
                             )
                           ),
                           const SizedBox(

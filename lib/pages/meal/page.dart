@@ -76,6 +76,7 @@ class _MealPage extends StatelessWidget {
                               "${DateTime.now().month}월 ${controller.getWeekOfMonth()}째 주",
                               style: DimigoinTextStyle.T5.copyWith(
                                 color: const Color(0xFFB1B8C1),
+                                fontWeight: FontWeight.w500
                               )
                             ),
                           ),

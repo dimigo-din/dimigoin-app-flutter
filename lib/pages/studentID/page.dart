@@ -185,7 +185,8 @@ class _StudentIDPage extends StatelessWidget {
                         child: Text(
                           "지도 일지",
                           style: DimigoinTextStyle.T4.copyWith(
-                            color: DimigoinColor.C1
+                            color: DimigoinColor.C1,
+                            fontWeight: FontWeight.w600
                           ),
                         ),
                       ),
@@ -212,7 +213,8 @@ class _StudentIDPage extends StatelessWidget {
                         child: Text(
                           "내 수강 내역",
                           style: DimigoinTextStyle.T4.copyWith(
-                            color: DimigoinColor.C1
+                            color: DimigoinColor.C1,
+                            fontWeight: FontWeight.w600
                           ),
                         ),
                       ),

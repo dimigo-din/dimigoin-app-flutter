@@ -184,7 +184,7 @@ class StudentIDCard extends GetView<_StudentIDCardController> {
                               height: 18,
                             ),
                             Text(
-                              _studentIDCardController.department.value, // _department[_studentIDCardController.classNum.value - 1],
+                              _studentIDCardController.department.value,
                               style: DimigoinTextStyle.T5.copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white
